@@ -14,32 +14,16 @@ public class ItemsLoadingDetails {
     private String itemPaidPricePerPiece;
     private String detailsID;
 
-    public String getLoadingDetailId() {
-        return loadingDetailId;
-    }
-
     public void setLoadingDetailId(String loadingDetailId) {
         this.loadingDetailId = loadingDetailId;
-    }
-
-    public String getStoreLoadingDate() {
-        return storeLoadingDate;
     }
 
     public void setStoreLoadingDate(String storeLoadingDate) {
         this.storeLoadingDate = storeLoadingDate;
     }
 
-    public String getItemPaidPricePerPiece() {
-        return itemPaidPricePerPiece;
-    }
-
     public void setItemPaidPricePerPiece(String itemPaidPricePerPiece) {
         this.itemPaidPricePerPiece = itemPaidPricePerPiece;
-    }
-
-    public String getDetailsID() {
-        return detailsID;
     }
 
     public void setDetailsID(String detailsID) {
@@ -50,10 +34,6 @@ public class ItemsLoadingDetails {
 
     }
 
-    public ItemsLoadingDetails(String itemPaidPricePerPiece, String detailsID) {
-        this.itemPaidPricePerPiece = itemPaidPricePerPiece;
-        this.detailsID = detailsID;
-    }
 
     public String toString() {
         return
@@ -65,9 +45,4 @@ public class ItemsLoadingDetails {
                 ;
     }
 
-    public String itemPaidPricePerPiece() {
-        return
-                itemPaidPricePerPiece;
-
-    }
 }

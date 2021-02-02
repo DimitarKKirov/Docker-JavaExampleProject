@@ -1,9 +1,7 @@
 package runner;
 
 import dockerHelper.DockerEnvHelperClass;
-import dockerHelper.DockerFilePaths;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
+import dockerHelper.filePathsInterface.DockerFilePaths;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.AfterClass;

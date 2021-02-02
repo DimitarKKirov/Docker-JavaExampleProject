@@ -1,4 +1,4 @@
-package dockerHelper;
+package dockerHelper.filePathsInterface;
 
 import java.io.File;
 

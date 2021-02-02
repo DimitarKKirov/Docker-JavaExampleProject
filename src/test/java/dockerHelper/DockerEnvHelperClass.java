@@ -187,7 +187,6 @@ public void downloadImage(String name,String tag,Long timeoutSeconds){
      * @param ports the ports that be binding with the exposed port of the container
      * */
     public void createContainer(String nameOfImage,String nameOfContainer, String ports){
-        HostConfig hostConfig = new HostConfig();
         dockerClient.createContainerCmd(nameOfImage)
                 .withName(nameOfContainer)
                 .withPortBindings(PortBinding.parse(ports))

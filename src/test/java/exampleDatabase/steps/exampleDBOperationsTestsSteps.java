@@ -1,7 +1,7 @@
 package exampleDatabase.steps;
 
 
-import dockerHelper.DockerFilePaths;
+import dockerHelper.filePathsInterface.DockerFilePaths;
 import exampleDatabase.DAO.Tables;
 import exampleDatabase.POJO.Items;
 import io.cucumber.java.en.Given;
@@ -20,7 +20,7 @@ public class exampleDBOperationsTestsSteps implements DockerFilePaths {
 
 
     @Given("the user inserts data in Items table rows {string}, {string}")
-    public void the_user_inserts_data_in_table_rows_56874236item12(String id, String itemName) {
+    public void theUserInsertsDataInTableRows(String id, String itemName) {
 
         da = new Tables();
         da.connection("mysql");
@@ -29,14 +29,14 @@ public class exampleDBOperationsTestsSteps implements DockerFilePaths {
     }
 
     @When("the user retrieves data")
-    public void the_user_retrieves_data() {
+    public void theUserRetrievesData() {
         data = da.getAllData("Items");
 
 
     }
 
     @Then("the data is the same")
-    public void the_data_is_the_same() {
+    public void theDataIsAsserted() {
         Items item = data.get(10) != null ? (Items) data.get(10) : null;
         assert item != null;
         String check = item.itemSerialNumber();

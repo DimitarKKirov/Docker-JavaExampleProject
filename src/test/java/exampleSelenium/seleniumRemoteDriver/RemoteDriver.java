@@ -20,10 +20,6 @@ public class RemoteDriver {
 
     public static WebDriver seleniumRemoteDriver;
 
-    public static WebDriver getSeleniumRemoteDriver() {
-        return seleniumRemoteDriver;
-    }
-
     public static void setDockerDriver(WebDriver seleniumRemoteDriver) {
         RemoteDriver.seleniumRemoteDriver = seleniumRemoteDriver;
     }
@@ -58,7 +54,6 @@ public class RemoteDriver {
      *                    ant its parameters
      * @return the method returns the instantiated driver for further use
      * with his build in methods
-     *
      */
     public WebDriver remoteDriver(String url, String browserName) {
 

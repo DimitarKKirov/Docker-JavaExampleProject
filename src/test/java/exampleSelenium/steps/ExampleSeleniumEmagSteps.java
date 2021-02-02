@@ -13,7 +13,7 @@ public class ExampleSeleniumEmagSteps {
     private EmagHomePage emag = new EmagHomePage();
 
     @Given("the user is on {string}")
-    public void the_user_is_on(String Url) {
+    public void theUserIsOn(String Url) {
 
         emag.remoteDriver(Url, "chrome");
         emag.acceptCokies();
@@ -21,15 +21,15 @@ public class ExampleSeleniumEmagSteps {
     }
 
     @When("tha user searches for {string}")
-    public void tha_user_searches_for(String name) {
-        emag.enterSearchCriteria(name);
+    public void thaUserSearchesFor(String nameOfItem) {
+        emag.enterSearchCriteria(nameOfItem);
         emag.clickSearchEmag();
     }
 
     @Then("the user finds relevant result equal to {string}")
-    public void the_user_finds_relevant_result_equal_to(String result) {
+    public void theUserFindsRelevantResultEqualTo(String expectedresult) {
         String actualResult = emag.remoteSearchResult();
 
-        Assert.assertEquals(result, actualResult);
+        Assert.assertEquals(expectedresult, actualResult);
     }
 }

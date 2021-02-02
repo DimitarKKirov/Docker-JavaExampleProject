@@ -30,18 +30,18 @@ public class EmagHomePage extends RemoteDriver {
 
     /**
      * method enterSearchCriteria is for searching in emag shop fora a given item
-     * @param searchText - this string parameter is passed as a search criteria for the
+     * @param nameOfItem - this string parameter is passed as a search criteria for the
      *                   search function in the web shop under test
      *                   by finding the filed and clicking on in selenium remote web driver
      *                   is passing the string parameter
      *
      * */
-    public void enterSearchCriteria(String searchText) {
+    public void enterSearchCriteria(String nameOfItem) {
         Actions actions = new Actions(seleniumRemoteDriver);
         WebElement searchField = seleniumRemoteDriver.findElement(By.xpath("//input[@id=\"searchboxTrigger\"]"));
         actions.moveToElement(searchField).build().perform();
         searchField.click();
-        searchField.sendKeys(searchText);
+        searchField.sendKeys(nameOfItem);
 
     }
 
