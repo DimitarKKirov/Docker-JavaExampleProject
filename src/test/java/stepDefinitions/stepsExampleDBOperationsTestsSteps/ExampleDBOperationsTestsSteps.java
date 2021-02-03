@@ -1,4 +1,4 @@
-package exampleDatabase.steps;
+package stepDefinitions.stepsExampleDBOperationsTestsSteps;
 
 
 import dockerHelper.filePathsInterface.DockerFilePaths;
@@ -13,7 +13,7 @@ import org.junit.Assert;
 
 import java.util.ArrayList;
 
-public class exampleDBOperationsTestsSteps implements DockerFilePaths {
+public class ExampleDBOperationsTestsSteps implements DockerFilePaths {
     private Tables da;
     private ArrayList<Object> data;
     private String id1;

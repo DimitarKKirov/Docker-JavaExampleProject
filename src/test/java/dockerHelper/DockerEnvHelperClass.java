@@ -2,9 +2,7 @@ package dockerHelper;
 
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.async.ResultCallbackTemplate;
-import com.github.dockerjava.api.model.HostConfig;
-import com.github.dockerjava.api.model.PortBinding;
-import com.github.dockerjava.api.model.Volume;
+import com.github.dockerjava.api.model.*;
 import com.github.dockerjava.core.DefaultDockerClientConfig;
 import com.github.dockerjava.core.DockerClientBuilder;
 import com.github.dockerjava.core.DockerClientConfig;
@@ -30,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 public class DockerEnvHelperClass {
 
     private DockerClient dockerClient;
-
+    private HostConfig hostConfig;
 
     /**
      * creating connection to docker daemon locally,by changing the host you can change the docker daemon client
@@ -187,9 +185,11 @@ public void downloadImage(String name,String tag,Long timeoutSeconds){
      * @param ports the ports that be binding with the exposed port of the container
      * */
     public void createContainer(String nameOfImage,String nameOfContainer, String ports){
+
+        hostConfig = new HostConfig().withPortBindings(PortBinding.parse(ports));
         dockerClient.createContainerCmd(nameOfImage)
                 .withName(nameOfContainer)
-                .withPortBindings(PortBinding.parse(ports))
+                .withHostConfig(hostConfig)
                 .exec();
     }
     /**
@@ -205,9 +205,10 @@ public void downloadImage(String name,String tag,Long timeoutSeconds){
     public void createContainer(String nameOfImage,String nameOfContainer, String ports,String secondPort){
         PortBinding one = PortBinding.parse(ports);
         PortBinding two = PortBinding.parse(secondPort);
+        hostConfig = new HostConfig().withPortBindings(one,two);
         dockerClient.createContainerCmd(nameOfImage)
                 .withName(nameOfContainer)
-                .withPortBindings(one,two)
+                .withHostConfig(hostConfig)
                 .exec();
     }
 

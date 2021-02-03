@@ -1,4 +1,4 @@
-package exampleSelenium.steps;
+package stepDefinitions.stepsExampleSeleniumEmagSteps;
 
 
 import exampleSelenium.emagPOM.EmagHomePage;

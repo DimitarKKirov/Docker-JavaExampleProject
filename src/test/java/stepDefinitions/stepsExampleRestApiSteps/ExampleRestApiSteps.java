@@ -1,4 +1,4 @@
-package exampleRest.steps;
+package stepDefinitions.stepsExampleRestApiSteps;
 
 
 import exampleRest.goApi.GoRestApiExampleRest;
@@ -9,7 +9,7 @@ import io.cucumber.java.en.When;
 
 
 
-public class exampleRestApiSteps {
+public class ExampleRestApiSteps {
     private GoRestApiExampleRest go = new GoRestApiExampleRest();
 
 
