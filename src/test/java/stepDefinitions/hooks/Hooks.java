@@ -7,19 +7,17 @@ import io.cucumber.java.Before;
 
 import java.io.IOException;
 
+/**
+ *
+ * the methods are downloading images, creating containers and starting them in Docker in order
+ * to for project tests to use them as test environment using @Before and @After hooks for easy maintenance
+ *
+ * All of the method that are used are described in DockerEnvHelperClass.class in package test.java.dockerHelper
+ *
+ * */
 public class Hooks implements DockerFilePaths {
     private static final DockerEnvHelperClass dockerHelp = new DockerEnvHelperClass();
-    long sec = 120;
-
-    /**
-     *
-     *
-     * the methods are downloading images, creating containers and starting them in Docker in order
-     * to for project tests to use them as test environment using @Before and @After hooks for easy maintenance
-     *
-     * All of the method that are used are described in DockerEnvHelperClass.class in package test.java.dockerHelper
-     *
-     * */
+    private final long sec = 120;
 
     @Before("@Selenium")
     public void envSetUpSelenium() {
