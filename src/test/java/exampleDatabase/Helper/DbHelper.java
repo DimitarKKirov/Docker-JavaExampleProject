@@ -14,8 +14,10 @@ public interface DbHelper {
     void addData(String ItemQuantity,String ItemSellingPrice, String ItemID);
     void addData(int ItemPaidPricePerPiece, int DetailsID);
     ArrayList<Object> getAllData(String tableName);
+    ArrayList<Object> getAllData();
     String getData(String tableName, String rowNumber);
     String getRandomData(String tableName,String idColumnName);
     void connection(String name);
+
 
 }

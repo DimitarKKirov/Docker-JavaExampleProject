@@ -11,10 +11,10 @@ public class EmagHomePage extends RemoteDriver {
 
 
 /**
- * method acceptCokies is for finding all elements with the given xpath, selects the third option and
+ * method acceptCookies is for finding all elements with the given xpath, selects the third option and
  * click on int in order to accept the cookies on the home page of Emag
  * */
-    public void acceptCokies() {
+    public void acceptCookies() {
         Actions actions = new Actions(seleniumRemoteDriver);
         List<WebElement> buttons = seleniumRemoteDriver.findElements(By.xpath("//div[@class=\"ZFr60d CeoRYc\"]"));
         for (int i = 0; i < buttons.size(); i++) {

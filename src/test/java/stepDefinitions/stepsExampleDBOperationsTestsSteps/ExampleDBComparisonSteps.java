@@ -1,0 +1,43 @@
+package stepDefinitions.stepsExampleDBOperationsTestsSteps;
+
+import exampleDatabase.DAO.Tables;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.junit.Assert;
+
+import java.util.ArrayList;
+
+public class ExampleDBComparisonSteps {
+    private Tables tables = new Tables();
+    private ArrayList<Object> po;
+    private ArrayList<Object> my;
+    private int i;
+    private int p;
+
+    @Given("the two data bases are not empty")
+    public void theMigration() {
+        tables.connection("mysql");
+        i = tables.getRowCount();
+        tables.connection("postgres");
+        p = tables.getRowCount();
+        Assert.assertTrue(i > 0);
+        Assert.assertTrue(p > 0);
+    }
+
+    @When("the data of the two databases is compared")
+    public void dataComparison() {
+        Assert.assertEquals(i, p);
+        my = tables.getAllData();
+        Assert.assertFalse(my.isEmpty());
+        tables.connection("postgres");
+        po = tables.getAllData();
+        Assert.assertFalse(po.isEmpty());
+    }
+
+    @Then("the two data bases are holding the same data")
+    public void EqualsCheck() {
+        Assert.assertEquals(my, po);
+    }
+
+}

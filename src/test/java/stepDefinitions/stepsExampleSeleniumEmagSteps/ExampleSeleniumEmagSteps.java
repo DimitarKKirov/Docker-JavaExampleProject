@@ -16,7 +16,7 @@ public class ExampleSeleniumEmagSteps {
     public void theUserIsOn(String Url) {
 
         emag.remoteDriver(Url, "chrome");
-        emag.acceptCokies();
+        emag.acceptCookies();
 
     }
 
@@ -27,9 +27,9 @@ public class ExampleSeleniumEmagSteps {
     }
 
     @Then("the user finds relevant result equal to {string}")
-    public void theUserFindsRelevantResultEqualTo(String expectedresult) {
+    public void theUserFindsRelevantResultEqualTo(String expectedResult) {
         String actualResult = emag.remoteSearchResult();
 
-        Assert.assertEquals(expectedresult, actualResult);
+        Assert.assertEquals(expectedResult, actualResult);
     }
 }

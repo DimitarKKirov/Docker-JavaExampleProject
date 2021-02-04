@@ -1,3 +1,4 @@
 .idea
 /target
 Docker-JavaExampleProject.iml
+src/test/java/dockerHelper/DockerTest.java

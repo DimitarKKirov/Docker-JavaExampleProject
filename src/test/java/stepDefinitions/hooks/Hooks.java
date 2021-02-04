@@ -73,6 +73,10 @@ public class Hooks implements DockerFilePaths {
         dockerHelp.deleteImage("mysql/mysql-server");
         dockerHelp.createContainer("myslq", "mydb", "8080:3306");
         dockerHelp.startContainer("mydb");
+        dockerHelp.downloadImageFromDockerfile(postgres, "mypost");
+        dockerHelp.deleteImage("postgres");
+        dockerHelp.createContainer("mypost", "mypost", "8081:5432");
+        dockerHelp.startContainer("mypost");
         try {
             Thread.sleep(15000);
         } catch (InterruptedException e) {
@@ -84,6 +88,8 @@ public class Hooks implements DockerFilePaths {
     public void rmEnvDB() {
         dockerHelp.stopContainer("mydb");
         dockerHelp.removeContainer("mydb");
+        dockerHelp.stopContainer("mypost");
+        dockerHelp.removeContainer("mypost");
         try {
             dockerHelp.closeConnection();
         } catch (IOException e) {

@@ -24,19 +24,6 @@ public class RemoteDriver {
         RemoteDriver.seleniumRemoteDriver = seleniumRemoteDriver;
     }
 
-    /*
-     * depending on the name the method choose which
-     * driver properties to load
-     */
-
-    /*
-       method for initialization of a remote web driver
-       which driver will be created is based on the passed string for browser name
-       after that check of the String browserName is passed the driver is created
-       with the needed options,then the method returns the created driver and makes
-       connection with the container via the docker url variable and opens the passed
-       String variable for Url
-    */
 
     /**
      * method for initialization of a remote web driver
