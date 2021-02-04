@@ -1,4 +1,4 @@
-package stepDefinitions.stepsExampleDBOperationsTestsSteps;
+package stepDefinitions.exampleDBOperationsTestsSteps;
 
 import exampleDatabase.DAO.Tables;
 import io.cucumber.java.en.Given;
@@ -16,7 +16,7 @@ public class ExampleDBComparisonSteps {
     private int p;
 
     @Given("the two data bases are not empty")
-    public void theMigration() {
+    public void theMigrationCountCheck() {
         tables.connection("mysql");
         i = tables.getRowCount();
         tables.connection("postgres");

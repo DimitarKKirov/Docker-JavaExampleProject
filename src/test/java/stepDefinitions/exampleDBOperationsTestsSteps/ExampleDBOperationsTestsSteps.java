@@ -1,4 +1,4 @@
-package stepDefinitions.stepsExampleDBOperationsTestsSteps;
+package stepDefinitions.exampleDBOperationsTestsSteps;
 
 
 import dockerHelper.filePathsInterface.DockerFilePaths;

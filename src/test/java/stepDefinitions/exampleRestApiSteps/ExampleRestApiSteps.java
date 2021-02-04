@@ -1,4 +1,4 @@
-package stepDefinitions.stepsExampleRestApiSteps;
+package stepDefinitions.exampleRestApiSteps;
 
 
 import exampleRest.goApi.GoRestApiExampleRest;
