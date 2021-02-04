@@ -8,13 +8,11 @@ import io.cucumber.java.Before;
 import java.io.IOException;
 
 /**
- *
  * the methods are downloading images, creating containers and starting them in Docker in order
  * to for project tests to use them as test environment using @Before and @After hooks for easy maintenance
- *
+ * <p>
  * All of the method that are used are described in DockerEnvHelperClass.class in package test.java.dockerHelper
- *
- * */
+ */
 public class Hooks implements DockerFilePaths {
     private static final DockerEnvHelperClass dockerHelp = new DockerEnvHelperClass();
     private final long sec = 120;
@@ -42,6 +40,7 @@ public class Hooks implements DockerFilePaths {
             e.printStackTrace();
         }
     }
+
     @Before("@Rest")
     public void envSetUpRest() {
 
@@ -66,8 +65,34 @@ public class Hooks implements DockerFilePaths {
             e.printStackTrace();
         }
     }
+
     @Before("@DB")
     public void envSetUpDB() {
+        dockerHelp.connect();
+        dockerHelp.downloadImageFromDockerfile(mysql, "myslq");
+        dockerHelp.deleteImage("mysql/mysql-server");
+        dockerHelp.createContainer("myslq", "mydb", "8080:3306");
+        dockerHelp.startContainer("mydb");
+        try {
+            Thread.sleep(15000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @After("@DB")
+    public void rmEnvDB() {
+        dockerHelp.stopContainer("mydb");
+        dockerHelp.removeContainer("mydb");
+        try {
+            dockerHelp.closeConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Before("@DBC")
+    public void envSetUpDB2() {
         dockerHelp.connect();
         dockerHelp.downloadImageFromDockerfile(mysql, "myslq");
         dockerHelp.deleteImage("mysql/mysql-server");
@@ -84,8 +109,8 @@ public class Hooks implements DockerFilePaths {
         }
     }
 
-    @After("@DB")
-    public void rmEnvDB() {
+    @After("@DBC")
+    public void rmEnvDB2() {
         dockerHelp.stopContainer("mydb");
         dockerHelp.removeContainer("mydb");
         dockerHelp.stopContainer("mypost");

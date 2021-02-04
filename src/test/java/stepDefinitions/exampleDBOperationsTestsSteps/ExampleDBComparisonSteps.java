@@ -15,7 +15,7 @@ public class ExampleDBComparisonSteps {
     private int i;
     private int p;
 
-    @Given("the two data bases are not empty")
+    @Given("the two databases are not empty")
     public void theMigrationCountCheck() {
         tables.connection("mysql");
         i = tables.getRowCount();
