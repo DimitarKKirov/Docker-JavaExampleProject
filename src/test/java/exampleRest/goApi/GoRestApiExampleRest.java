@@ -7,12 +7,12 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
 
-
+/**
+ * this class is set up to test one end point of instantiated rest api container in Docker,
+ * to show how easy is to use the docker containers for testing purposes
+ */
 public class GoRestApiExampleRest {
-    /**
-     * this class is set up to test one end point of instantiated rest api container in Docker,
-     * to show how easy is to use the docker containers for testing purposes
-     */
+
     private RequestSpecification request = RestAssured.given();
     private Response response;
     private String body;
