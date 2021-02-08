@@ -24,7 +24,7 @@ public class Driver implements Paths {
      *             the two databases are with established database and filled tables, they can be changed form
      *             the sql file in earlier mentioned packages
      */
-    public  Connection databaseConnection(String name) {
+    public Connection databaseConnection(String name) {
         Properties properties = new Properties();
         Connection dBConnection = null;
         if (name.equalsIgnoreCase("Mysql")) {

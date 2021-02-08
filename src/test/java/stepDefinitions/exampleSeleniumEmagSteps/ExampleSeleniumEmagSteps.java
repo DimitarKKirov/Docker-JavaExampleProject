@@ -8,7 +8,6 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 
-
 public class ExampleSeleniumEmagSteps {
     private EmagHomePage emag = new EmagHomePage();
 

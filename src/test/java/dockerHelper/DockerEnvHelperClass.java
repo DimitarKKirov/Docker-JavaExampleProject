@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * https://docs.docker.com/engine/reference/commandline/dockerd/
  * More info for the Docker-Java library - https://www.baeldung.com/docker-java-api
  * https://github.com/docker-java/docker-java
- *
+ * <p>
  * PARAMETERS FOR NAMES MUST ALL BE IN LOWERCASE, OTHERWISE DOCKER_JAVA WILL THROW AN ERROR
  */
 public class DockerEnvHelperClass {
@@ -89,6 +89,7 @@ public class DockerEnvHelperClass {
         System.out.println("container " + name + " is started");
 
     }
+
     /**
      * for some reason when the image is created from a docker file without creating it with a custom name
      * the environment variables from the dockerfile are not applied,when downloadImageFromDockerfile with name param method
@@ -96,59 +97,62 @@ public class DockerEnvHelperClass {
      * the passed name variable, this results in Docker having two images and one of which is not used, in order to escape the additional
      * storage memory from the base image is advised to use delete image method and remove the unnecessary
      * base image
+     *
      * @param name user passes the name of the image to be deleted
      */
-    public void deleteImage(String name){
+    public void deleteImage(String name) {
         dockerClient.removeImageCmd(name).exec();
     }
 
     /**
      * method for downloading images from Docker repository
      *
-     * @param name This parameter must be da actual name of the image in Docker repository for example
-     *             if the name is set to mysql docker will download the mysql database
-     * @param tag Tag is equal to the application version that the user want to download from the repository,
-     *            if the tag is ste to latest the "latest" version of the application will be downloaded
+     * @param name           This parameter must be da actual name of the image in Docker repository for example
+     *                       if the name is set to mysql docker will download the mysql database
+     * @param tag            Tag is equal to the application version that the user want to download from the repository,
+     *                       if the tag is ste to latest the "latest" version of the application will be downloaded
      * @param timeoutSeconds tis variable sets how much time docker-java will waite for the image to be downloaded,
      *                       this method timeout is set in seconds
-     * */
-public void downloadImage(String name,String tag,Long timeoutSeconds){
-    try {
-        dockerClient.pullImageCmd(name)
-                .withTag(tag)
-                .start()
-                .awaitCompletion(timeoutSeconds,TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-        e.printStackTrace();
-    }
-}
-    /**
-     * method for downloading images from Docker repository
-     *
-     * @param name This parameter must be da actual name of the image in Docker repository for example
-     *             if the name is set to mysql docker will download the mysql database
-     * @param tag Tag is equal to the application version that the user want to download from the repository,
-     *            if the tag is ste to latest the "latest" version of the application will be downloaded
-     * @param timeoutMinutes tis variable sets how much time docker-java will waite for the image to be downloaded,
-     *                       this method timeout is set in minutes
-     * */
-    public void downloadImageMinutes(String name,String tag,Long timeoutMinutes){
+     */
+    public void downloadImage(String name, String tag, Long timeoutSeconds) {
         try {
             dockerClient.pullImageCmd(name)
                     .withTag(tag)
                     .start()
-                    .awaitCompletion(timeoutMinutes,TimeUnit.MINUTES);
+                    .awaitCompletion(timeoutSeconds, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
+
+    /**
+     * method for downloading images from Docker repository
+     *
+     * @param name           This parameter must be da actual name of the image in Docker repository for example
+     *                       if the name is set to mysql docker will download the mysql database
+     * @param tag            Tag is equal to the application version that the user want to download from the repository,
+     *                       if the tag is ste to latest the "latest" version of the application will be downloaded
+     * @param timeoutMinutes tis variable sets how much time docker-java will waite for the image to be downloaded,
+     *                       this method timeout is set in minutes
+     */
+    public void downloadImageMinutes(String name, String tag, Long timeoutMinutes) {
+        try {
+            dockerClient.pullImageCmd(name)
+                    .withTag(tag)
+                    .start()
+                    .awaitCompletion(timeoutMinutes, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * method for downloading images from Docker repository
      *
      * @param dockerfile This parameter must show the Filepath to the actual dockerfile in order for docker-java to be able
      *                   to pass it to the Docker Daemon
-     * */
-    public void downloadImageFromDockerfile(File dockerfile){
+     */
+    public void downloadImageFromDockerfile(File dockerfile) {
         try {
             dockerClient.buildImageCmd()
                     .withDockerfile(dockerfile)
@@ -157,15 +161,16 @@ public void downloadImage(String name,String tag,Long timeoutSeconds){
             e.printStackTrace();
         }
     }
+
     /**
      * method for downloading images from Docker repository
      *
-     * @param dockerfile This parameter must show the Filepath to the actual dockerfile in order for docker-java to be able
-     *                   to pass it to the Docker Daemon
+     * @param dockerfile      This parameter must show the Filepath to the actual dockerfile in order for docker-java to be able
+     *                        to pass it to the Docker Daemon
      * @param customImageName if the user wants he/she can set there own name for the image residing in Docker
      */
 
-    public void downloadImageFromDockerfile(File dockerfile,String customImageName){
+    public void downloadImageFromDockerfile(File dockerfile, String customImageName) {
         try {
             dockerClient.buildImageCmd()
                     .withDockerfile(dockerfile)
@@ -180,11 +185,11 @@ public void downloadImage(String name,String tag,Long timeoutSeconds){
     /**
      * method for instantiating a container form image
      *
-     * @param nameOfImage the name of the image that the container will be instantiated
+     * @param nameOfImage     the name of the image that the container will be instantiated
      * @param nameOfContainer the name of the container that the user is creating
-     * @param ports the ports that be binding with the exposed port of the container
-     * */
-    public void createContainer(String nameOfImage,String nameOfContainer, String ports){
+     * @param ports           the ports that be binding with the exposed port of the container
+     */
+    public void createContainer(String nameOfImage, String nameOfContainer, String ports) {
 
         hostConfig = new HostConfig().withPortBindings(PortBinding.parse(ports));
         dockerClient.createContainerCmd(nameOfImage)
@@ -192,20 +197,21 @@ public void downloadImage(String name,String tag,Long timeoutSeconds){
                 .withHostConfig(hostConfig)
                 .exec();
     }
+
     /**
      * method for instantiating a container form image
      *
-     * @param nameOfImage the name of the image that the container will be instantiated
+     * @param nameOfImage     the name of the image that the container will be instantiated
      * @param nameOfContainer the name of the container that the user is creating
-     * @param ports the ports that be binding with the exposed port of the container
-     * @param secondPort some applications like tha selenium stand alone chrome have more exposed ports,
-     *                   one for the actual selenium remote driver to connect and one for VNC for debug purposes
-     *                   of course the method can be overloaded with more ports
-     * */
-    public void createContainer(String nameOfImage,String nameOfContainer, String ports,String secondPort){
+     * @param ports           the ports that be binding with the exposed port of the container
+     * @param secondPort      some applications like tha selenium stand alone chrome have more exposed ports,
+     *                        one for the actual selenium remote driver to connect and one for VNC for debug purposes
+     *                        of course the method can be overloaded with more ports
+     */
+    public void createContainer(String nameOfImage, String nameOfContainer, String ports, String secondPort) {
         PortBinding one = PortBinding.parse(ports);
         PortBinding two = PortBinding.parse(secondPort);
-        hostConfig = new HostConfig().withPortBindings(one,two);
+        hostConfig = new HostConfig().withPortBindings(one, two);
         dockerClient.createContainerCmd(nameOfImage)
                 .withName(nameOfContainer)
                 .withHostConfig(hostConfig)

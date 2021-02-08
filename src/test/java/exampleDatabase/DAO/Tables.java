@@ -23,7 +23,6 @@ public class Tables extends Driver implements DbHelper, SqlQuery {
     private PreparedStatement prep;
     String name;
 
-
     public void setName(String name) {
         this.name = name;
     }
@@ -131,7 +130,6 @@ public class Tables extends Driver implements DbHelper, SqlQuery {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -212,8 +210,9 @@ public class Tables extends Driver implements DbHelper, SqlQuery {
      * By using the connection to send Sql request the method retrieves the data from
      * the tre Tables and stores the data in a ArrayList for further use.
      * The sql queries are coming from interface sqlQueries in exampleDatabase.sqlQuery package.
+     * @return ArrayList<Object> - method returns data from all table in array list with object type:
+     * Items, ItemsDetails and ItemsLoadingDetails (classes can be found in package POJO)
      */
-
     @Override
     public ArrayList<Object> getAllData() {
         ArrayList<Object> getAll = new ArrayList<>();
@@ -285,7 +284,6 @@ public class Tables extends Driver implements DbHelper, SqlQuery {
             e.printStackTrace();
         }
         return null;
-
     }
 
     /**

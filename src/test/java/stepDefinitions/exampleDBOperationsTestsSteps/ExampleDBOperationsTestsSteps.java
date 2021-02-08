@@ -1,7 +1,6 @@
 package stepDefinitions.exampleDBOperationsTestsSteps;
 
 
-import dockerHelper.filePathsInterface.DockerFilePaths;
 import exampleDatabase.DAO.Tables;
 import exampleDatabase.POJO.Items;
 import io.cucumber.java.en.Given;
@@ -13,7 +12,7 @@ import org.junit.Assert;
 
 import java.util.ArrayList;
 
-public class ExampleDBOperationsTestsSteps implements DockerFilePaths {
+public class ExampleDBOperationsTestsSteps {
     private Tables da;
     private ArrayList<Object> data;
     private String id1;

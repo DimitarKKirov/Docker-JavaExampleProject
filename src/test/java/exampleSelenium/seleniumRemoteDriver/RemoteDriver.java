@@ -24,7 +24,6 @@ public class RemoteDriver {
         RemoteDriver.seleniumRemoteDriver = seleniumRemoteDriver;
     }
 
-
     /**
      * method for initialization of a remote web driver
      * which driver will be created is based on the passed string for browser name
