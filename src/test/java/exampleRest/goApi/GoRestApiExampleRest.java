@@ -33,11 +33,11 @@ public class GoRestApiExampleRest {
     /**
      * method for retrieving the msg endpoint
      *
-     * @param baseUrl - passing the url endpoint that contains the msg
+     * @param endpoint - passing the url endpoint that contains the msg
      */
-    public void getMsg(String baseUrl) {
-        RestAssured.baseURI = baseUrl;
-        response = request.request(Method.GET, baseUrl);
+    public void getMsg(String endpoint) {
+        RestAssured.baseURI = endpoint;
+        response = request.request(Method.GET, endpoint);
         body = response.getBody().asString();
 
     }

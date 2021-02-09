@@ -116,16 +116,16 @@ public class Tables extends Driver implements DbHelper, SqlQuery {
      * Items using a prepare statement and the connection setup from the Driver Class
      * The sql queries are coming from interface sqlQueries in exampleDatabase.sqlQuery package.
      *
-     * @param ItemSerialNumber - ItemSerialNumber is a field in the database under test,
+     * @param id - ItemSerialNumber is a field in the database under test,
      *                         the parameter is used to pass the value for the field in Table Items
-     * @param nameItem         -nameItem filed contains the name of the item in the Items table.
+     * @param itemName         -nameItem filed contains the name of the item in the Items table.
      */
     @Override
-    public void addData(String ItemSerialNumber, String nameItem) {
+    public void addData(String id, String itemName) {
         try {
             prep = connection.prepareStatement(ADD_IN_ITEMS);
-            prep.setString(1, ItemSerialNumber);
-            prep.setString(2, nameItem);
+            prep.setString(1, id);
+            prep.setString(2, itemName);
             prep.execute();
         } catch (SQLException e) {
             e.printStackTrace();
