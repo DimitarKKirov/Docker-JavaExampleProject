@@ -31,7 +31,6 @@ public class ExampleDBOperationsTestsSteps {
     public void theUserRetrievesData() {
         data = da.getAllData("Items");
 
-
     }
 
     @Then("the data is the same")
