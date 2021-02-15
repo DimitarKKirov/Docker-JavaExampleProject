@@ -1,4 +1,5 @@
 .idea
 /target
+/exampleSeleniumGrid
 Docker-JavaExampleProject.iml
 src/test/java/dockerHelper/DockerTest.java

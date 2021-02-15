@@ -122,4 +122,34 @@ public class Hooks implements DockerFilePaths {
         }
     }
 
+    @Before("@SeleniumGrid")
+    public void envSetUpSeleniumGrid() {
+        dockerHelp.connect();
+        try {
+            dockerHelp.sendCommand("docker-compose -f src/test/java/dockerHelper/exampleSeleniumGrid/docker-compose.yaml up -d ");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            Thread.sleep(10500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @After("@SeleniumGrid")
+    public void rmEnvSeleniumGrid() {
+//        dockerHelp.stopContainer("exampleseleniumgrid_hub_1");
+//        dockerHelp.stopContainer("web-automation_chrome");
+//        dockerHelp.stopContainer("web-automation_firefox");
+//        dockerHelp.removeContainer("exampleseleniumgrid_hub_1");
+//        dockerHelp.removeContainer("web-automation_chrome");
+//        dockerHelp.removeContainer("web-automation_firefox");
+        try {
+            dockerHelp.closeConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
