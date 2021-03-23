@@ -1,4 +1,4 @@
-@Show @DB
+@Show @DBOperations
 Feature: example feature for database operations in Docker containers
 
 

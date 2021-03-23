@@ -27,12 +27,17 @@ public class ExampleDBComparisonSteps {
 
     @When("the data of the two databases is compared")
     public void dataComparison() {
+        int a=0;
         Assert.assertEquals(i, p);
         my = tables.getAllData();
         Assert.assertFalse(my.isEmpty());
         tables.connection("postgres");
         po = tables.getAllData();
         Assert.assertFalse(po.isEmpty());
+        while (a<30) {
+            po.get(a).toString();
+        a++;
+        }
     }
 
     @Then("the two data bases are holding the same data")

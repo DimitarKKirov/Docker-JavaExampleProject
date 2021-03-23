@@ -66,12 +66,12 @@ public class Hooks implements DockerFilePaths {
         }
     }
 
-    @Before("@DB")
+    @Before("@DBOperations")
     public void envSetUpDB() {
         dockerHelp.connect();
-        dockerHelp.downloadImageFromDockerfile(mysql, "myslq");
+        dockerHelp.downloadImageFromDockerfile(mysql, "mysql");
         dockerHelp.deleteImage("mysql/mysql-server");
-        dockerHelp.createContainer("myslq", "mydb", "8080:3306");
+        dockerHelp.createContainer("mysql", "mydb", "8080:3306");
         dockerHelp.startContainer("mydb");
         try {
             Thread.sleep(15000);
@@ -80,7 +80,7 @@ public class Hooks implements DockerFilePaths {
         }
     }
 
-    @After("@DB")
+    @After("@DBOperations")
     public void rmEnvDB() {
         dockerHelp.stopContainer("mydb");
         dockerHelp.removeContainer("mydb");
@@ -91,12 +91,12 @@ public class Hooks implements DockerFilePaths {
         }
     }
 
-    @Before("@DBC")
+    @Before("@DBComparison")
     public void envSetUpDB2() {
         dockerHelp.connect();
-        dockerHelp.downloadImageFromDockerfile(mysql, "myslq");
+        dockerHelp.downloadImageFromDockerfile(mysql, "mysql");
         dockerHelp.deleteImage("mysql/mysql-server");
-        dockerHelp.createContainer("myslq", "mydb", "8080:3306");
+        dockerHelp.createContainer("mysql", "mydb", "8080:3306");
         dockerHelp.startContainer("mydb");
         dockerHelp.downloadImageFromDockerfile(postgres, "mypost");
         dockerHelp.deleteImage("postgres");
@@ -109,7 +109,7 @@ public class Hooks implements DockerFilePaths {
         }
     }
 
-    @After("@DBC")
+    @After("@DBComparison")
     public void rmEnvDB2() {
         dockerHelp.stopContainer("mydb");
         dockerHelp.removeContainer("mydb");
@@ -139,12 +139,12 @@ public class Hooks implements DockerFilePaths {
 
     @After("@SeleniumGrid")
     public void rmEnvSeleniumGrid() {
-//        dockerHelp.stopContainer("exampleseleniumgrid_hub_1");
-//        dockerHelp.stopContainer("web-automation_chrome");
-//        dockerHelp.stopContainer("web-automation_firefox");
-//        dockerHelp.removeContainer("exampleseleniumgrid_hub_1");
-//        dockerHelp.removeContainer("web-automation_chrome");
-//        dockerHelp.removeContainer("web-automation_firefox");
+        dockerHelp.stopContainer("exampleseleniumgrid_hub_1");
+        dockerHelp.stopContainer("web-automation_chrome");
+        dockerHelp.stopContainer("web-automation_firefox");
+        dockerHelp.removeContainer("exampleseleniumgrid_hub_1");
+        dockerHelp.removeContainer("web-automation_chrome");
+        dockerHelp.removeContainer("web-automation_firefox");
         try {
             dockerHelp.closeConnection();
         } catch (IOException e) {
