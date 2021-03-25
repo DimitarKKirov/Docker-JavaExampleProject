@@ -10,9 +10,11 @@ import org.junit.runner.RunWith;
         monochrome = true,
         features = {"src/test/resources/features"},
         tags = "@Show",
-        plugin = {"pretty", "html:target/cucumber-hmtl-report", "json:target/cucumber.json"},
+        plugin = { "json:target/cucumber-reports/cucumber.json",
+        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
         glue = {"stepDefinitions"},
         dryRun = false
+
 )
 
 public class Runner {

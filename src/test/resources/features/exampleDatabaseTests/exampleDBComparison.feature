@@ -1,4 +1,4 @@
-@Show @DBC
+@Show @DBComparison
 Feature: comparison between two databases
 
   Scenario: Comparing data from two databases (Mysql,Postgres)
